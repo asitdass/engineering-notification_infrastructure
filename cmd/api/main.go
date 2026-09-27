@@ -7,9 +7,7 @@ import (
 
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-		fmt.Fprintln(w, "Notification Infrastructure API")
-	})
+	http.HandleFunc("/notifications", CreateNotification)
 	fmt.Println("Server running on http://localhost:8080")
 
 	err := http.ListenAndServe(":8080", nil)
