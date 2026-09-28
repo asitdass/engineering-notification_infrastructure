@@ -13,6 +13,10 @@ type CreateNotificationRequest struct {
 }
 
 func CreateNotification(w http.ResponseWriter, r *http.Request) {
+	if(r.Method != http.MethodPost){
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	var request CreateNotificationRequest
 
 	err := json.NewDecoder(r.Body).Decode(&request)
