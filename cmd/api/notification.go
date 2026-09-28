@@ -20,8 +20,9 @@ func CreateNotification(w http.ResponseWriter, r *http.Request) {
 	var request CreateNotificationRequest
 
 	err := json.NewDecoder(r.Body).Decode(&request)
+	err = validateCreateNotificationRequest(request)
 	if err != nil {
-		http.Error(w, "invalid JSON", http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
